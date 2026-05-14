@@ -1,15 +1,52 @@
 [project]
 name = "hhru"
 version = "0.1.0"
-description = ""
+description = "Курсовая работа по созданию системы получения данных о компаниях и вакансиях с сайта hh.ru"
 authors = [
     {name = "Sergey Ivanov",email = "ivanitch.mail@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "requests (>=2.34.1,<3.0.0)"
 ]
 
+[tool.poetry]
+package-mode = false
+
+[dependency-groups]
+lint = [
+    "flake8 (>=7.3.0,<8.0.0)",
+    "black (>=25.12.0,<26.0.0)",
+    "isort (>=7.0.0,<8.0.0)",
+    "mypy (>=1.19.1,<2.0.0)"
+]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)"
+]
+
+[tool.black]
+line-length = 119
+exclude = '''
+/(
+    \.git
+  | tests
+  | test\.py
+)/
+'''
+
+[tool.isort]
+line_length = 119
+profile = "black"
+skip_glob = ["tests/*", "test.py"]
+
+[tool.mypy]
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = [
+    "test\\.py",
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

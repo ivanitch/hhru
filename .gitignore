@@ -1,0 +1,15 @@
+__pycache__/
+.poetry/
+.venv/
+.idea/
+
+.coverage
+.coverage.*
+*.cover
+/htmlcov/
+
+/.env
+/logs/
+
+# Testing (Dev)
+/test.py

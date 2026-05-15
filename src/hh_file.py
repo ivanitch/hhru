@@ -1,5 +1,6 @@
-from src.abstact import AbstarctAPI
 import json
+
+from src.abstact import AbstarctAPI
 
 
 class HHFile(AbstarctAPI):
@@ -8,6 +9,6 @@ class HHFile(AbstarctAPI):
         self.file_path = file_path
 
     def get_all_vacancies(self) -> list[dict]:
-        with open(self.file_path, 'r') as f:
+        with open(self.file_path, "r") as f:
             data = json.load(f)
         return data.get("items", [])

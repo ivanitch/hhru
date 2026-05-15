@@ -3,7 +3,7 @@ Name              Stmts   Miss  Cover
 src/__init__.py       0      0   100%
 src/abstact.py        5      1    80%
 src/hh_api.py        23      0   100%
-src/hh_file.py        9      9     0%
+src/hh_file.py        9      0   100%
 src/vacancy.py       26      1    96%
 -------------------------------------
-TOTAL                63     11    83%
+TOTAL                63      2    97%

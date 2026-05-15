@@ -9,11 +9,19 @@
 
 ```
 hhru/
+├── data/
+│   ├── hh_vacancies.json
+├── htmlcov/
 ├── src/
 │   ├── __init__.py
+│   ├── abstact.py
+│   ├── hh_api.py
+│   ├── hh_file.py
 │   └── vacancy.py
 ├── tests/
 │   ├── __init__.py
+│   ├── conftest.py
+│   ├── test_hh_api.py
 │   └── test_vacancy.py
 ├── .coverage
 ├── flake8
@@ -84,9 +92,12 @@ poetry run coverage html                   # HTML-отчёт в папке htmlc
 Name              Stmts   Miss  Cover
 -------------------------------------
 src/__init__.py       0      0   100%
+src/abstact.py        5      1    80%
+src/hh_api.py        23      0   100%
+src/hh_file.py        9      9     0%
 src/vacancy.py       26      1    96%
 -------------------------------------
-TOTAL                26      1    96%
+TOTAL                63     11    83%
 ```
 
 ---

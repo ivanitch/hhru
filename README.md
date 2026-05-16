@@ -12,6 +12,7 @@ hhru/
 ├── data/
 │   ├── db/
 │   ├──── create_db.sql
+│   ├── companies.json
 │   ├── hh_vacancies.json
 ├── htmlcov/
 ├── src/

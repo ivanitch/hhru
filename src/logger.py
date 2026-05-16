@@ -6,10 +6,9 @@ def setup_logger(name: str) -> logging.Logger:
     logger.setLevel(logging.DEBUG)
 
     handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter(
-        "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
-        datefmt="%Y-%m-%dT%H:%M:%S"
-    ))
+    handler.setFormatter(
+        logging.Formatter("%(asctime)s | %(levelname)-8s | %(name)s | %(message)s", datefmt="%Y-%m-%dT%H:%M:%S")
+    )
 
     logger.addHandler(handler)
     logger.propagate = False

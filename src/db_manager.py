@@ -1,6 +1,7 @@
+import os
+
 import psycopg
 from dotenv import load_dotenv
-import os
 
 from src.exceptions import DBConnectionError
 from src.logger import setup_logger
@@ -70,29 +71,34 @@ class DBManager:
     def get_all_vacancies(self) -> list[tuple]:
         """Список всех вакансий с названием компании, вакансии, зарплатой и ссылкой."""
         with self._conn.cursor() as cur:
-            cur.execute("""
+            cur.execute(
+                """
                 SELECT c.company_name, v.vacancy_name, v.salary_from, v.salary_to, v.url
                 FROM vacancies v
                 JOIN companies c USING(company_id)
                 ORDER BY v.salary_from DESC NULLS LAST;
-            """)
+            """
+            )
             return cur.fetchall()
 
     def get_avg_salary(self) -> float:
         """Средняя зарплата по всем вакансиям."""
         with self._conn.cursor() as cur:
-            cur.execute("""
+            cur.execute(
+                """
                 SELECT ROUND(AVG(salary_from)::numeric, 2)
                 FROM vacancies
                 WHERE salary_from IS NOT NULL;
-            """)
+            """
+            )
             result = cur.fetchone()
             return float(result[0]) if result and result[0] else 0.0
 
     def get_vacancies_with_higher_salary(self) -> list[tuple]:
         """Вакансии с зарплатой выше средней."""
         with self._conn.cursor() as cur:
-            cur.execute("""
+            cur.execute(
+                """
                 SELECT c.company_name, v.vacancy_name, v.salary_from, v.salary_to, v.url
                 FROM vacancies v
                 JOIN companies c USING(company_id)
@@ -102,19 +108,23 @@ class DBManager:
                     WHERE salary_from IS NOT NULL
                 )
                 ORDER BY v.salary_from DESC;
-            """)
+            """
+            )
             return cur.fetchall()
 
     def get_vacancies_with_keyword(self, keyword: str) -> list[tuple]:
         """Вакансии у которых в названии содержится ключевое слово."""
         with self._conn.cursor() as cur:
-            cur.execute("""
+            cur.execute(
+                """
                 SELECT c.company_name, v.vacancy_name, v.salary_from, v.salary_to, v.url
                 FROM vacancies v
                 JOIN companies c USING(company_id)
                 WHERE v.vacancy_name ILIKE %s
                 ORDER BY v.salary_from DESC NULLS LAST;
-            """, (f"%{keyword}%",))
+            """,
+                (f"%{keyword}%",),
+            )
             return cur.fetchall()
 
     def close(self) -> None:

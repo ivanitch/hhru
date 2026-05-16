@@ -10,6 +10,8 @@
 ```
 hhru/
 ├── data/
+│   ├── db/
+│   ├──── create_db.sql
 │   ├── hh_vacancies.json
 ├── htmlcov/
 ├── src/
@@ -25,6 +27,7 @@ hhru/
 │   ├── test_hh_file.py
 │   └── test_vacancy.py
 ├── .coverage
+├── .env.example
 ├── flake8
 ├── .gitignore
 ├── coverage.txt
@@ -52,6 +55,14 @@ poetry install
 # Отдельно ставим группы (тесты, покрытие, линтеры)
 poetry install --with dev,lint
 ```
+
+## База данных
+
+Скопировать файл `.env.example` в `.env` настроить подключение к БД.
+
+```bash
+cp .env.example .env
+````
 
 ---
 
